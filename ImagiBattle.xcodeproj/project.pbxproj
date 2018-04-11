@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F7586155207DEE9B00F184B9 /* ImageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7586154207DEE9B00F184B9 /* ImageTableViewController.swift */; };
 		F7DC0E08207D8E2100E1136C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC0E07207D8E2100E1136C /* AppDelegate.swift */; };
 		F7DC0E0A207D8E2100E1136C /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = F7DC0E09207D8E2100E1136C /* art.scnassets */; };
 		F7DC0E0C207D8E2100E1136C /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC0E0B207D8E2100E1136C /* BattleViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F7586154207DEE9B00F184B9 /* ImageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewController.swift; sourceTree = "<group>"; };
 		F7DC0E04207D8E2100E1136C /* ImagiBattle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImagiBattle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7DC0E07207D8E2100E1136C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7DC0E09207D8E2100E1136C /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				F7DC0E07207D8E2100E1136C /* AppDelegate.swift */,
 				F7DC0E09207D8E2100E1136C /* art.scnassets */,
 				F7DC0E0B207D8E2100E1136C /* BattleViewController.swift */,
+				F7586154207DEE9B00F184B9 /* ImageTableViewController.swift */,
 				F7DC0E0D207D8E2100E1136C /* Main.storyboard */,
 				F7DC0E10207D8E2300E1136C /* Assets.xcassets */,
 				F7DC0E12207D8E2300E1136C /* LaunchScreen.storyboard */,
@@ -140,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7DC0E0C207D8E2100E1136C /* BattleViewController.swift in Sources */,
+				F7586155207DEE9B00F184B9 /* ImageTableViewController.swift in Sources */,
 				F7DC0E08207D8E2100E1136C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

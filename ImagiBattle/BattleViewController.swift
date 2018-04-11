@@ -9,16 +9,28 @@
 import UIKit
 import SceneKit
 import ARKit
+import CoreGraphics
 
 class BattleViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var clearButton: UIButton!
+    @IBOutlet weak var selectButton: UIButton!
+    @IBOutlet weak var picker: UIPickerView!
     
     var scene: SCNScene?
     var sceneNode: SCNNode?
+    var pickerData: [String] = ["Falcon", "Kylo", "Luke", "Raichu", "Stormtrooper", "Xwing"]
+    var indexPickerName: [String] = ["model_Millenium_falcon_20171214_153929645", "Kylo", "model_Luke_20171215_093639477", "_odel_Pok__mon_20171108_19001620", "model_Stormtrooper_20171214_154554283", "model_X_Wing_20171214_155110102"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Picker sets
+        self.picker.delegate = self
+        self.picker.dataSource = self
+        self.picker.isHidden = true
+        
         
         // Set the view's delegate
         sceneView.delegate = self
@@ -27,11 +39,11 @@ class BattleViewController: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = true
         
         // Create a new scene
-        scene = SCNScene(named: "art.scnassets/ship.scn")!
-        self.sceneNode = scene!.rootNode.childNode(withName: "model_Pokémon_20171108_190016208", recursively: true)
-        self.sceneNode?.scale = SCNVector3(0.000001, 0.000001, 0.000001)
+        scene = SCNScene(named: "art.scnassets/Kylo.dae")!
+        self.sceneNode = scene!.rootNode.childNode(withName: "Kylo", recursively: true)
+        self.sceneNode?.scale = SCNVector3(0.01, 0.01, 0.01)
         // Set the scene to the view
-        sceneView.scene = scene!
+        //sceneView.scene = scene!
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -100,5 +112,46 @@ class BattleViewController: UIViewController, ARSCNViewDelegate {
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
+    }
+    
+    func selectedScene(_ name: String,_ modelName: String) {
+        scene = SCNScene(named: name)
+        self.sceneNode = scene!.rootNode.childNode(withName: modelName, recursively: true)
+        self.sceneNode?.scale = SCNVector3(2,2,2)
+    }
+    
+    @IBAction func clearView(_ sender: Any) {
+        
+        sceneView.scene = scene!
+    }
+    
+    @IBAction func selectImage(_ sender: Any) {
+        print("Button pressed")
+        UIView.animate(withDuration: 0.3) {
+            self.picker.frame = CGRect(x: 0, y: self.view.bounds.size.height - self.picker.bounds.size.height, width: self.picker.bounds.size.width, height: self.picker.bounds.size.height)
+        }
+        self.picker.becomeFirstResponder()
+        
+    }
+}
+
+extension BattleViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.pickerData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedScene(pickerData[row], indexPickerName[row])
+        self.picker.resignFirstResponder()
+        self.picker.isHidden = true
     }
 }
