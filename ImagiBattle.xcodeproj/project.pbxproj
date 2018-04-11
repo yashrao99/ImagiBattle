@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		F7DC0E08207D8E2100E1136C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC0E07207D8E2100E1136C /* AppDelegate.swift */; };
 		F7DC0E0A207D8E2100E1136C /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = F7DC0E09207D8E2100E1136C /* art.scnassets */; };
-		F7DC0E0C207D8E2100E1136C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC0E0B207D8E2100E1136C /* ViewController.swift */; };
+		F7DC0E0C207D8E2100E1136C /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DC0E0B207D8E2100E1136C /* BattleViewController.swift */; };
 		F7DC0E0F207D8E2100E1136C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7DC0E0D207D8E2100E1136C /* Main.storyboard */; };
 		F7DC0E11207D8E2300E1136C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7DC0E10207D8E2300E1136C /* Assets.xcassets */; };
 		F7DC0E14207D8E2300E1136C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7DC0E12207D8E2300E1136C /* LaunchScreen.storyboard */; };
@@ -19,7 +19,7 @@
 		F7DC0E04207D8E2100E1136C /* ImagiBattle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImagiBattle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7DC0E07207D8E2100E1136C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F7DC0E09207D8E2100E1136C /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		F7DC0E0B207D8E2100E1136C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F7DC0E0B207D8E2100E1136C /* BattleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
 		F7DC0E0E207D8E2100E1136C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F7DC0E10207D8E2300E1136C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7DC0E13207D8E2300E1136C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 			children = (
 				F7DC0E07207D8E2100E1136C /* AppDelegate.swift */,
 				F7DC0E09207D8E2100E1136C /* art.scnassets */,
-				F7DC0E0B207D8E2100E1136C /* ViewController.swift */,
+				F7DC0E0B207D8E2100E1136C /* BattleViewController.swift */,
 				F7DC0E0D207D8E2100E1136C /* Main.storyboard */,
 				F7DC0E10207D8E2300E1136C /* Assets.xcassets */,
 				F7DC0E12207D8E2300E1136C /* LaunchScreen.storyboard */,
@@ -139,7 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7DC0E0C207D8E2100E1136C /* ViewController.swift in Sources */,
+				F7DC0E0C207D8E2100E1136C /* BattleViewController.swift in Sources */,
 				F7DC0E08207D8E2100E1136C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,12 +287,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L3WCZURK57;
 				INFOPLIST_FILE = ImagiBattle/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.YashasRao99.ImagiBattle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos11.4;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -305,12 +307,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L3WCZURK57;
 				INFOPLIST_FILE = ImagiBattle/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.YashasRao99.ImagiBattle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos11.4;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
