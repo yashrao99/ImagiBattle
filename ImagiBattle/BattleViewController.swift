@@ -11,12 +11,11 @@ import SceneKit
 import ARKit
 import CoreGraphics
 
-class BattleViewController: UIViewController, ARSCNViewDelegate {
+class BattleViewController: UIViewController, ARSCNViewDelegate, SelectImageDelegate  {
 
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var selectButton: UIButton!
-    @IBOutlet weak var picker: UIPickerView!
     
     var scene: SCNScene?
     var sceneNode: SCNNode?
@@ -25,13 +24,7 @@ class BattleViewController: UIViewController, ARSCNViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Picker sets
-        self.picker.delegate = self
-        self.picker.dataSource = self
-        self.picker.isHidden = true
-        
-        
+
         // Set the view's delegate
         sceneView.delegate = self
         
@@ -39,11 +32,29 @@ class BattleViewController: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = true
         
         // Create a new scene
+        
         scene = SCNScene(named: "art.scnassets/Kylo.dae")!
         self.sceneNode = scene!.rootNode.childNode(withName: "Kylo", recursively: true)
         self.sceneNode?.scale = SCNVector3(0.01, 0.01, 0.01)
+        
         // Set the scene to the view
         //sceneView.scene = scene!
+        
+    }
+    
+    func selectedImage(row: Int) {
+        selectedScene(self.pickerData[row], self.indexPickerName[row])
+        
+        switch self.pickerData[row] {
+            
+            case "Falcon": self.sceneNode?.scale = SCNVector3(0.001, 0.001, 0.001)
+            case "Kylo": self.sceneNode?.scale = SCNVector3(0.1, 0.1, 0.1)
+            case "Luke": self.sceneNode?.scale = SCNVector3(0.005, 0.005, 0.005)
+            case "Raichu": self.sceneNode?.scale = SCNVector3(0.005, 0.005, 0.005)
+            case "Stormtrooper": self.sceneNode?.scale = SCNVector3(0.001, 0.001, 0.001)
+            case "Xwing": self.sceneNode?.scale = SCNVector3(0.005, 0.005, 0.005)
+            default: self.sceneNode?.scale = SCNVector3(0,0,0)
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -87,6 +98,14 @@ class BattleViewController: UIViewController, ARSCNViewDelegate {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toSelect" {
+            let vc = segue.destination as! ImageTableViewController
+            vc.delegate = self
+            vc.tableData = self.pickerData
+        }
+    }
 
     // MARK: - ARSCNViewDelegate
     
@@ -115,43 +134,16 @@ class BattleViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func selectedScene(_ name: String,_ modelName: String) {
-        scene = SCNScene(named: name)
+        scene = SCNScene(named: "art.scnassets/" + name + ".dae")
         self.sceneNode = scene!.rootNode.childNode(withName: modelName, recursively: true)
-        self.sceneNode?.scale = SCNVector3(2,2,2)
+       // self.sceneNode?.scale = SCNVector3(0.01,0.01,0.01)
     }
-    
+
     @IBAction func clearView(_ sender: Any) {
-        
         sceneView.scene = scene!
     }
     
     @IBAction func selectImage(_ sender: Any) {
-        print("Button pressed")
-        UIView.animate(withDuration: 0.3) {
-            self.picker.frame = CGRect(x: 0, y: self.view.bounds.size.height - self.picker.bounds.size.height, width: self.picker.bounds.size.width, height: self.picker.bounds.size.height)
-        }
-        self.picker.becomeFirstResponder()
-        
-    }
-}
-
-extension BattleViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.pickerData.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedScene(pickerData[row], indexPickerName[row])
-        self.picker.resignFirstResponder()
-        self.picker.isHidden = true
+        self.performSegue(withIdentifier: "toSelect", sender: self)
     }
 }
